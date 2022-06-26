@@ -9,12 +9,12 @@
 
 .section h1 {
   position: absolute;
-  top:50px;
-  font-size:4em
+  top: 50px;
+  font-size: 4em;
 }
 
-.board{
-    width:600px;
-    height:600px;
-    display: grid;
+.board {
+  width: 600px;
+  height: 600px;
+  display: grid;
 }

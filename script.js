@@ -20,8 +20,11 @@ function createDivs(num) {
   emptyColor();
 }
 
-slider.addEventListener("change", (e) => {
+slider.addEventListener("input", (e) => {
   board.innerHTML = "";
+  document.querySelector(
+    ".size-value"
+  ).textContent = `${e.target.value} x ${e.target.value}`;
   createDivs(e.target.value);
 });
 
