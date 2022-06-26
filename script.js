@@ -5,24 +5,25 @@ let btnRGB = document.createElement("button");
 let btnSize = document.createElement("button");
 let btnEmpty = document.createElement("button");
 let buttonsContainer = document.querySelector(".buttons");
-let slider= document.querySelector(".slider");
-function createDivs(col, rows) {
-  for (let i = 0; i < col * rows; i++) {
+let slider = document.querySelector(".slider");
+function createDivs(num) {
+  for (let i = 0; i < num * num; i++) {
     let div = document.createElement("div");
     div.style.border = "1px solid black";
-    board.style.gridTemplateColumns = `repeat(${col},1fr)`;
-    board.style.gridTemplateRows = `repeat(${rows},1fr)`;
+    board.style.gridTemplateColumns = `repeat(${num},1fr)`;
+    board.style.gridTemplateRows = `repeat(${num},1fr)`;
     board.appendChild(div).classList.add("square");
   }
+  grayColor();
+  blackColor();
+  rgbColor();
+  emptyColor();
 }
 
-// slider.addEventListener("change", (e)=>{
-//   board.innerHTML=""
-//   createDivs(e.target.value, e.target.value)
-//   let gridSize = document.querySelector(".size-value")
-  
-//   gridSize.textContent =`${e.target.value} x ${e.target.value}`
-// })
+slider.addEventListener("change", (e) => {
+  board.innerHTML = "";
+  createDivs(e.target.value);
+});
 
 createDivs(16, 16);
 
@@ -30,10 +31,10 @@ function grayColor() {
   let squares = board.querySelectorAll(".square");
   btnGray.textContent = "Gray";
   btnGray.addEventListener("click", (e) => {
-    console.log(e)
+    console.log(e);
     squares.forEach((square) => {
       square.addEventListener("mouseover", (e) => {
-        console.log(e)
+        console.log(e);
         let randomNumber = Math.floor(Math.random() * 255);
         square.style.background = `rgb(${randomNumber}, ${randomNumber},${randomNumber})`;
       });
@@ -41,8 +42,6 @@ function grayColor() {
   });
   buttonsContainer.appendChild(btnGray).classList.add("btn");
 }
-
-grayColor();
 
 function blackColor() {
   let squares = board.querySelectorAll(".square");
@@ -56,8 +55,6 @@ function blackColor() {
   });
   buttonsContainer.appendChild(btnBlack).classList.add("btn");
 }
-
-blackColor();
 
 function rgbColor() {
   let squares = board.querySelectorAll(".square");
@@ -80,16 +77,14 @@ rgbColor();
 function emptyColor() {
   let squares = board.querySelectorAll(".square");
   btnEmpty.textContent = "Empty Grid";
-  btnEmpty.addEventListener(
-    "click",()=>{
-      squares.forEach(square=>{
-        square.style.background = ""
-      })
-    }
-  );
+  btnEmpty.addEventListener("click", () => {
+    squares.forEach((square) => {
+      square.style.background = "";
+    });
+  });
   buttonsContainer.appendChild(btnEmpty);
 }
-emptyColor()
+emptyColor();
 
 // function reSize() {
 //   btnSize.textContent = "GRID SIZE";
