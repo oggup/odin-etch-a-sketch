@@ -32,3 +32,36 @@ function grayColor() {
 }
 
 grayColor();
+
+function blackColor() {
+  let squares = board.querySelectorAll(".square");
+  btnBlack.textContent = "Black";
+  btnBlack.addEventListener("click", () => {
+    squares.forEach((square) => {
+      square.addEventListener("mouseover", () => {
+        square.style.background = "black";
+      });
+    });
+  });
+  buttonsContainer.appendChild(btnBlack).classList.add("btn");
+}
+
+blackColor();
+
+function rgbColor() {
+  let squares = board.querySelectorAll(".square");
+  btnRGB.textContent = "RGB";
+  btnRGB.addEventListener("click", () => {
+    squares.forEach((square) => {
+      square.addEventListener("mouseover", () => {
+        let r = Math.floor(Math.random() * 255);
+        let g = Math.floor(Math.random() * 255);
+        let b = Math.floor(Math.random() * 255);
+        square.style.background = `rgb(${r},${g},${b})`;
+      });
+    });
+  });
+  buttonsContainer.appendChild(btnRGB).classList.add("btn");
+}
+
+rgbColor();
