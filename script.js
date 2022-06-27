@@ -3,9 +3,14 @@ let btnBlack = document.createElement("button");
 let btnGray = document.createElement("button");
 let btnRGB = document.createElement("button");
 let btnSize = document.createElement("button");
+let btnErase = document.createElement("button");
 let btnEmpty = document.createElement("button");
 let buttonsContainer = document.querySelector(".buttons");
 let slider = document.querySelector(".slider");
+function defaultLayout() {
+  createDivs(16);
+}
+defaultLayout();
 function createDivs(num) {
   for (let i = 0; i < num * num; i++) {
     let div = document.createElement("div");
@@ -17,6 +22,7 @@ function createDivs(num) {
   grayColor();
   blackColor();
   rgbColor();
+  eraseColor();
   emptyColor();
 }
 
@@ -27,8 +33,6 @@ slider.addEventListener("input", (e) => {
   ).textContent = `${e.target.value} x ${e.target.value}`;
   createDivs(e.target.value);
 });
-
-createDivs(16, 16);
 
 function grayColor() {
   let squares = board.querySelectorAll(".square");
@@ -58,7 +62,18 @@ function blackColor() {
   });
   buttonsContainer.appendChild(btnBlack).classList.add("btn");
 }
-
+function eraseColor() {
+  let squares = board.querySelectorAll(".square");
+  btnErase.textContent = "Eraser";
+  btnErase.addEventListener("click", () => {
+    squares.forEach((square) => {
+      square.addEventListener("mouseover", () => {
+        square.style.background = "white";
+      });
+    });
+  });
+  buttonsContainer.appendChild(btnErase).classList.add("btn");
+}
 function rgbColor() {
   let squares = board.querySelectorAll(".square");
   btnRGB.textContent = "RGB";
@@ -75,8 +90,6 @@ function rgbColor() {
   buttonsContainer.appendChild(btnRGB).classList.add("btn");
 }
 
-rgbColor();
-
 function emptyColor() {
   let squares = board.querySelectorAll(".square");
   btnEmpty.textContent = "Empty Grid";
@@ -87,11 +100,3 @@ function emptyColor() {
   });
   buttonsContainer.appendChild(btnEmpty);
 }
-emptyColor();
-
-// function reSize() {
-//   btnSize.textContent = "GRID SIZE";
-//   btnSize.addEventListener("click", () => {
-//     let user = prompt("what size do you want your grid to be?");
-//   });
-// }
