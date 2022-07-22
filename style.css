@@ -8,6 +8,9 @@
 }
 
 .section h1 {
+  display: flex;
+  justify-content: center;
+  align-self: center;
   color: rgb(224, 138, 152);
 }
 
